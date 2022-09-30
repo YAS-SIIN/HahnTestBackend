@@ -3,7 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HahnTestBackend.API", "HahnTestBackend.API\HahnTestBackend.API.csproj", "{C75765E7-8D5C-4DAB-9CB4-9F991F83A4ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HahnTestBackend.API", "src\HahnTestBackend.API\HahnTestBackend.API.csproj", "{C75765E7-8D5C-4DAB-9CB4-9F991F83A4ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HahnTestBackend.Application", "src\HahnTestBackend.Application\HahnTestBackend.Application.csproj", "{D3B2F379-3EB5-4736-834F-FD7EF189B253}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HahnTestBackend.Core", "src\HahnTestBackend.Core\HahnTestBackend.Core.csproj", "{E04DE793-05B0-469B-9D68-540B7C2E0D53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HahnTestBackend.Domain", "src\HahnTestBackend.Domain\HahnTestBackend.Domain.csproj", "{A22132B9-BEFE-4EE5-A1D4-77315CC15631}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HahnTestBackend.Infra.Data", "src\HahnTestBackend.Infra.Data\HahnTestBackend.Infra.Data.csproj", "{8ADFEF50-F646-43F8-A7B0-EEC86CAEBF7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HahnTestBackend.Infra.Messaging", "src\HahnTestBackend.Infra.Messaging\HahnTestBackend.Infra.Messaging.csproj", "{BDE68FD0-1B94-4F25-9C29-DFC3120AEE1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HahnTestBackend.IoC", "src\HahnTestBackend.IoC\HahnTestBackend.IoC.csproj", "{CCE540A3-2068-4806-9A57-32F1993B68C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +27,30 @@ Global
 		{C75765E7-8D5C-4DAB-9CB4-9F991F83A4ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C75765E7-8D5C-4DAB-9CB4-9F991F83A4ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C75765E7-8D5C-4DAB-9CB4-9F991F83A4ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3B2F379-3EB5-4736-834F-FD7EF189B253}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3B2F379-3EB5-4736-834F-FD7EF189B253}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3B2F379-3EB5-4736-834F-FD7EF189B253}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3B2F379-3EB5-4736-834F-FD7EF189B253}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E04DE793-05B0-469B-9D68-540B7C2E0D53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E04DE793-05B0-469B-9D68-540B7C2E0D53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E04DE793-05B0-469B-9D68-540B7C2E0D53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E04DE793-05B0-469B-9D68-540B7C2E0D53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A22132B9-BEFE-4EE5-A1D4-77315CC15631}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A22132B9-BEFE-4EE5-A1D4-77315CC15631}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A22132B9-BEFE-4EE5-A1D4-77315CC15631}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A22132B9-BEFE-4EE5-A1D4-77315CC15631}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8ADFEF50-F646-43F8-A7B0-EEC86CAEBF7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8ADFEF50-F646-43F8-A7B0-EEC86CAEBF7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8ADFEF50-F646-43F8-A7B0-EEC86CAEBF7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8ADFEF50-F646-43F8-A7B0-EEC86CAEBF7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDE68FD0-1B94-4F25-9C29-DFC3120AEE1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDE68FD0-1B94-4F25-9C29-DFC3120AEE1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDE68FD0-1B94-4F25-9C29-DFC3120AEE1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDE68FD0-1B94-4F25-9C29-DFC3120AEE1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCE540A3-2068-4806-9A57-32F1993B68C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCE540A3-2068-4806-9A57-32F1993B68C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCE540A3-2068-4806-9A57-32F1993B68C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCE540A3-2068-4806-9A57-32F1993B68C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
