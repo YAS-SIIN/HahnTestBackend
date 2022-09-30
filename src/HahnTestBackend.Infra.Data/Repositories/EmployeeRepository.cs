@@ -16,18 +16,18 @@ namespace HahnTestBackend.Infra.Data.Repositories
 
         public async Task<bool> ExistsAsync(string nationalCode)
         {
-            return await _HahnTestBackendContext.Employee.AnyAsync(a => a.NationalCode.Equals(nationalCode));
+            return await _HahnTestBackendContext.Employees.AnyAsync(a => a.NationalCode.Equals(nationalCode));
         }
 
         public async Task<IEnumerable<Employee>> GetAllAsync()
         {
-            return await _HahnTestBackendContext.Employee.AsNoTracking().ToListAsync();
+            return await _HahnTestBackendContext.Employees.AsNoTracking().ToListAsync();
         }
 
         public void Delete(Guid id)
         {
-            var entity = _HahnTestBackendContext.Employee.FirstOrDefault(b => b.Id == id);
-            _HahnTestBackendContext.Employee.Remove(entity);
+            var entity = _HahnTestBackendContext.Employees.FirstOrDefault(b => b.Id == id);
+            _HahnTestBackendContext.Employees.Remove(entity);
         }
 
     }

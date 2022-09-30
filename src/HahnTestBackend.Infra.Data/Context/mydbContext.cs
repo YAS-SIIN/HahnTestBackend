@@ -9,7 +9,7 @@ namespace HahnTestBackend.Infra.Data.Context
 {
     public class myDBContext : DbContext
     {
-        public DbSet<Employee> Employee { get; set; }              
+        public DbSet<Employee> Employees { get; set; }              
 
         public myDBContext(DbContextOptions options) 
             : base(options)
