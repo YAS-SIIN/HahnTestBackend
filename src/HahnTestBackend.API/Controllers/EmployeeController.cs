@@ -1,10 +1,15 @@
 ﻿
+using FluentValidation;
+
 using HahnTestBackend.Core.Interfaces;         
 using HahnTestBackend.Domain.Entities;
 using HahnTestBackend.Domain.Interfaces.Repositories;
+using HahnTestBackend.Domain.Validators;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Model;
 
 namespace HahnTestBackend.API.Controllers
 {
@@ -29,11 +34,13 @@ namespace HahnTestBackend.API.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] Employee model)
         {
-            if (!ModelState.IsValid)
+            model.Name = "";
+ EmployeeValidator modelValidator = new EmployeeValidator();
+          var validation= modelValidator.Validate(model);
+            if (!validation.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(validation);
             }
-
             _employeeRepository.Add(model);
 
             _employeeRepository.SaveChanges();
@@ -43,11 +50,14 @@ namespace HahnTestBackend.API.Controllers
         [HttpPut]
         public IActionResult Put([FromBody]  Employee model)
         {
-            if (!ModelState.IsValid)
+            EmployeeValidator modelValidator = new EmployeeValidator();
+            var validation = modelValidator.Validate(model);
+            if (!validation.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(validation);
             }
 
+            model.Updated = DateTime.Now;
              _employeeRepository.Update(model);
             _employeeRepository.SaveChanges();
 
