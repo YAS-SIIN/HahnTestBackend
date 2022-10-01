@@ -16,7 +16,7 @@ namespace HahnTestBackend.Infra.Data.Repositories
 
         public int SaveChanges() => _HahnTestBackendContext.SaveChangesAsync().Result;
 
-        public void Add(T entity) => _HahnTestBackendContext.Add(entity);
+        public void Add(T entity) => _HahnTestBackendContext.Add(entity);     
         public void Update(T entity) => _HahnTestBackendContext.Update(entity);
          
         public void Dispose()

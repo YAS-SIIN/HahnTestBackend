@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HahnTestBackend.Infra.Data.Migrations
 {
-    public partial class MyFirstMigration : Migration
+    public partial class InitMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,8 @@ namespace HahnTestBackend.Infra.Data.Migrations
                 name: "Employees",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     SureName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     NationalCode = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),

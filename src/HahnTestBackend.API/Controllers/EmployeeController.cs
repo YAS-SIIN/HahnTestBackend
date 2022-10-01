@@ -1,6 +1,7 @@
-﻿using HahnTestBackend.Application.Employee;
-using HahnTestBackend.Core.Interfaces;
-using HahnTestBackend.Domain.Commands.Employee;
+﻿
+using HahnTestBackend.Core.Interfaces;         
+using HahnTestBackend.Domain.Entities;
+using HahnTestBackend.Domain.Interfaces.Repositories;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,60 +12,55 @@ namespace HahnTestBackend.API.Controllers
     [ApiController]
    
     public class EmployeeController : ControllerBase
-    {
-        private readonly ICommandHandler<CreateEmployeeCommand> _createEmployeeCommandHandler;
-        private readonly ICommandHandler<UpdateEmployeeCommand> _updateEmployeeCommandHandler;
-        private readonly ICommandHandler<DeleteEmployeeCommand> _deleteEmployeeCommandHandler;
-        private readonly IEmployeeQueries _EmployeeQueries;
+    {                                                                             
+        private readonly IEmployeeRepository _employeeRepository;
 
-        public EmployeeController(ICommandHandler<CreateEmployeeCommand> createEmployeeCommandHandler,
-            ICommandHandler<UpdateEmployeeCommand> updateEmployeeCommandHandler,
-            ICommandHandler<DeleteEmployeeCommand> deleteEmployeeCommandHandler,
-            IEmployeeQueries EmployeeQueries)
+        public EmployeeController(IEmployeeRepository EmployeeRepository)
         {
-            _createEmployeeCommandHandler = createEmployeeCommandHandler;
-            _updateEmployeeCommandHandler = updateEmployeeCommandHandler;
-            _deleteEmployeeCommandHandler = deleteEmployeeCommandHandler;
-            _EmployeeQueries = EmployeeQueries;
+            _employeeRepository = EmployeeRepository;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_EmployeeQueries.GetAllAsync().Result);
+            return Ok(_employeeRepository.GetAllAsync().Result);
         }
       
         [HttpPost]
-        public IActionResult Post(CreateEmployeeCommand command)
+        public IActionResult Post([FromBody] Employee model)
         {
-            var result = _createEmployeeCommandHandler.Handle(command);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-            if (result.Success)
-                return Ok(command);
+            _employeeRepository.Add(model);
 
-            return BadRequest(result.Errors);
+            _employeeRepository.SaveChanges();
+            return Ok(model);
         }
 
         [HttpPut]
-        public IActionResult Put(UpdateEmployeeCommand command)
+        public IActionResult Put([FromBody]  Employee model)
         {
-            var result = _updateEmployeeCommandHandler.Handle(command);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-            if (result.Success)
-                return Ok(command);
+             _employeeRepository.Update(model);
+            _employeeRepository.SaveChanges();
 
-            return BadRequest(result.Errors);
+            return Ok(model);
         }
 
         [HttpDelete]
-        public IActionResult Delete(DeleteEmployeeCommand command)
+        public IActionResult Delete(int Id)
         {
-            var result = _deleteEmployeeCommandHandler.Handle(command);
+           _employeeRepository.Delete(Id);
+            _employeeRepository.SaveChanges();
 
-            if (result.Success)
-                return Ok(command);
-
-            return BadRequest(result.Errors);
+            return Ok();
         }
     }
 

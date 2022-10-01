@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HahnTestBackend.Infra.Data.Migrations
 {
     [DbContext(typeof(myDBContext))]
-    [Migration("20220930212234_MyFirstMigration")]
-    partial class MyFirstMigration
+    [Migration("20221001190114_InitMigration")]
+    partial class InitMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,9 +26,11 @@ namespace HahnTestBackend.Infra.Data.Migrations
 
             modelBuilder.Entity("HahnTestBackend.Domain.Entities.Employee", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");

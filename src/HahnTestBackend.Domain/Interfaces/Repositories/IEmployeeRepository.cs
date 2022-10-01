@@ -9,6 +9,6 @@ namespace HahnTestBackend.Domain.Interfaces.Repositories
     {
         Task<bool> ExistsAsync(string nationalCode);
         Task<IEnumerable<Employee>> GetAllAsync();
-        void Delete(Guid id);
+        void Delete(int Id);
     }
 }

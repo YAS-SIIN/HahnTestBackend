@@ -20,11 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HahnTestBackend.Application\HahnTestBackend.Application.csproj" />
     <ProjectReference Include="..\HahnTestBackend.Core\HahnTestBackend.Core.csproj" />
     <ProjectReference Include="..\HahnTestBackend.Domain\HahnTestBackend.Domain.csproj" />
     <ProjectReference Include="..\HahnTestBackend.Infra.Data\HahnTestBackend.Infra.Data.csproj" />
-    <ProjectReference Include="..\HahnTestBackend.IoC\HahnTestBackend.IoC.csproj" />
   </ItemGroup>
 
 </Project>

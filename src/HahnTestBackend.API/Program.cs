@@ -1,13 +1,12 @@
+using HahnTestBackend.Domain.Interfaces.Repositories;
 using HahnTestBackend.Infra.Data.Context;
-using HahnTestBackend.IoC;
+using HahnTestBackend.Infra.Data.Repositories;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
 
 using Swashbuckle.AspNetCore.SwaggerUI;
-
-IConsumerSubscriptions _consumerSubscriptions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,12 +37,7 @@ builder.Services.AddSwaggerGen(c =>
 
 
 builder.Services.AddDbContext<myDBContext>(options => options.UseSqlServer(builder.Configuration["ApplicationOptions:ConnectionString"]));
-
-builder.Services.Register();
-
-var serviceProvider = builder.Services.BuildServiceProvider();
-
-_consumerSubscriptions = (IConsumerSubscriptions)serviceProvider.GetRequiredService(typeof(IConsumerSubscriptions));
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
 var app = builder.Build();
 
@@ -61,6 +55,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("CorsPolicy");
+
 app.UseHttpsRedirection();
 
 app.UseRouting();
@@ -69,7 +65,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.UseRabbitListener(_consumerSubscriptions);
 
 app.Run();
 

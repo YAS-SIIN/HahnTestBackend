@@ -1,16 +1,21 @@
-﻿using HahnTestBackend.Core.Commands;
-
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace HahnTestBackend.Domain.Commands.Employee
+using HahnTestBackend.Core.Entity;
+
+namespace HahnTestBackend.Domain.Entities
 {
-    public abstract class EmployeeCommandBase : CommandBase
+    public class EmployeeDto
     {
         [Required]
         [StringLength(100)]
-        public string Name { get;  set; }
+        public string Name { get; private set; }
+
+        [Required]
         [StringLength(100)]
         public string SureName { get; private set; }
+                    
+        [Required]
         [StringLength(10)]
         public string NationalCode { get; private set; }
     }

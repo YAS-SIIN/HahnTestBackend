@@ -24,9 +24,9 @@ namespace HahnTestBackend.Infra.Data.Repositories
             return await _HahnTestBackendContext.Employees.AsNoTracking().ToListAsync();
         }
 
-        public void Delete(Guid id)
+        public void Delete(int Id)
         {
-            var entity = _HahnTestBackendContext.Employees.FirstOrDefault(b => b.Id == id);
+            var entity = _HahnTestBackendContext.Employees.Find(Id);
             _HahnTestBackendContext.Employees.Remove(entity);
         }
 
